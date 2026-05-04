@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>巅峰破晓 · 小轩ovo | 1200-1800巅峰教学 + 绝活哥殿堂</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at 20% 30%, #0a0f1c, #010101);
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            padding: 24px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* 动态科技背景 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 20% 40%, rgba(0, 255, 255, 0.06) 1px, transparent 1px);
+            background-size: 48px 48px;
+            animation: gridMove 40s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        @keyframes gridMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 96px 96px; }
+        }
+        body::after {
+            content: "";
+            position: fixed;
+            top: -30%;
+            left: -30%;
+            width: 160%;
+            height: 160%;
+            background: radial-gradient(circle, rgba(0, 255, 200, 0.08), rgba(255, 0, 255, 0.04));
+            animation: rotateBg 45s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        @keyframes rotateBg {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .universe {
+            max-width: 1500px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* 卡密面板 */
+        .quantum-panel {
+            background: rgba(6, 16, 28, 0.8);
+            backdrop-filter: blur(30px);
+            border-radius: 80px;
+            border: 1px solid rgba(0, 255, 255, 0.6);
+            box-shadow: 0 0 80px rgba(0, 200, 255, 0.3), inset 0 0 20px rgba(0,255,255,0.1);
+            padding: 52px 36px;
+            text-align: center;
+            max-width: 650px;
+            margin: 8vh auto;
+            position: relative;
+            overflow: hidden;
+            animation: panelFloat 6s infinite alternate;
+        }
+        @keyframes panelFloat {
+            0% { transform: translateY(0px); box-shadow: 0 0 60px rgba(0, 200, 255, 0.2); }
+            100% { transform: translateY(-10px); box-shadow: 0 0 100px rgba(0, 200, 255, 0.5); }
+        }
+        .quantum-panel::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.15), transparent 70%);
+            animation: auraRotate 12s linear infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+        @keyframes auraRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .quantum-panel::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 80px;
+            padding: 2px;
+            background: linear-gradient(115deg, cyan, magenta, cyan);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+        .quantum-icon {
+            font-size: 64px;
+            filter: drop-shadow(0 0 20px cyan);
+            margin-bottom: 16px;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+        @keyframes iconFloat {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+        .quantum-title {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, #0cf, #0af);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 2px;
+        }
+        .quantum-sub {
+            color: #bbddff;
+            font-size: 16px;
+            margin: 12px 0 28px;
+            border-bottom: 1px dashed cyan;
+            display: inline-block;
+            padding-bottom: 6px;
+        }
+        .security-notice {
+            background: rgba(255, 100, 100, 0.12);
+            border-left: 3px solid #ff6680;
+            border-radius: 28px;
+            padding: 16px 20px;
+            margin: 24px 0;
+            text-align: left;
+            font-size: 13px;
+            color: #ffccdd;
+            font-family: monospace;
+        }
+        .neon-input {
+            background: #07121ecc;
+            border: 2px solid #0cf;
+            border-radius: 80px;
+            padding: 16px 28px;
+            width: 300px;
+            color: #0cf;
+            font-size: 16px;
+            text-align: center;
+            outline: none;
+            transition: 0.2s;
+            box-shadow: 0 0 8px rgba(0,255,255,0.3);
+        }
+        .neon-input:focus {
+            border-color: #f0f;
+            box-shadow: 0 0 25px #f0f;
+        }
+        .glow-button {
+            background: rgba(0, 204, 255, 0.2);
+            border: 1.5px solid #0cf;
+            border-radius: 80px;
+            padding: 14px 42px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 0 10px rgba(0,255,255,0.3);
+        }
+        .glow-button:hover {
+            background: #0cf;
+            color: #000;
+            box-shadow: 0 0 30px #0cf;
+            transform: scale(1.02);
+        }
+        .error-feedback { color: #ff5588; margin-top: 16px; min-height: 48px; font-size: 15px; }
+
+        /* 教学主体样式（完整保留） */
+        .teaching-temple {
+            display: none;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        .teaching-temple.visible {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .master-card {
+            background: rgba(2, 12, 22, 0.7);
+            backdrop-filter: blur(18px);
+            border-radius: 56px;
+            border: 1px solid rgba(0, 255, 255, 0.4);
+            overflow: hidden;
+        }
+        .header-area {
+            padding: 28px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid cyan;
+            background: rgba(0, 150, 200, 0.05);
+        }
+        .coach-info { display: flex; align-items: center; gap: 20px; }
+        .coach-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: radial-gradient(circle, cyan, #0a6e8a);
+            box-shadow: 0 0 15px cyan;
+            cursor: pointer;
+        }
+        .coach-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: spinavatar 12s linear infinite;
+        }
+        @keyframes spinavatar {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .coach-name { font-size: 28px; font-weight: 700; color: white; text-shadow: 0 0 8px cyan; }
+        .phase-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            margin: 48px 32px 56px;
+        }
+        .phase-card {
+            flex: 1;
+            background: linear-gradient(145deg, #0e1e2e, #04121e);
+            border-radius: 44px;
+            padding: 30px;
+            border: 1px solid rgba(0, 255, 255, 0.35);
+            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .phase-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        .phase-card:hover::after { left: 100%; }
+        .phase-card:hover {
+            transform: translateY(-8px);
+            border-color: cyan;
+            box-shadow: 0 20px 35px rgba(0, 255, 255, 0.25);
+        }
+        .phase-title { font-size: 32px; color: cyan; margin-bottom: 12px; font-weight: 700; }
+        .phase-list { list-style: none; }
+        .phase-list li { margin: 12px 0; padding-left: 28px; position: relative; color: #eef4ff; line-height: 1.45; }
+        .phase-list li::before { content: "▸"; position: absolute; left: 0; color: cyan; }
+        .basic-hero-section { margin: 0 32px 30px; }
+        .section-label {
+            font-size: 34px;
+            font-weight: 800;
+            color: cyan;
+            border-left: 6px solid cyan;
+            padding-left: 24px;
+            margin-bottom: 24px;
+        }
+        .role-group {
+            margin-bottom: 24px;
+            border-radius: 48px;
+            background: rgba(0, 20, 40, 0.55);
+            overflow: hidden;
+        }
+        .role-header {
+            padding: 20px 34px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            font-size: 32px;
+            font-weight: 700;
+            color: #f0faff;
+            border-left: 6px solid cyan;
+            transition: 0.2s;
+        }
+        .role-header:hover { background: rgba(0, 255, 255, 0.1); padding-left: 44px; }
+        .toggle-arrow { font-size: 38px; transition: transform 0.35s; }
+        .role-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s;
+            padding: 0 32px;
+        }
+        .role-content.open { max-height: 2500px; padding: 28px 32px 36px; }
+        .heroes-grid { display: flex; flex-wrap: wrap; gap: 24px; }
+        .hero-card {
+            background: #0a182ad9;
+            border-radius: 40px;
+            width: calc(25% - 24px);
+            min-width: 220px;
+            padding: 22px;
+            border: 1px solid rgba(0, 255, 255, 0.45);
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .hero-card:active { transform: scale(0.94); }
+        .hero-card:hover {
+            transform: translateY(-5px);
+            border-color: cyan;
+            background: #143c54;
+            box-shadow: 0 12px 28px rgba(0, 255, 255, 0.25);
+        }
+        .hero-name { font-size: 26px; font-weight: 800; color: #ffffdd; margin-bottom: 8px; }
+        .hall-of-fame {
+            margin: 80px 32px 50px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 64px;
+            padding: 32px;
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(0, 255, 255, 0.6);
+        }
+        .hall-title {
+            font-size: 58px;
+            font-weight: 900;
+            text-align: center;
+            background: linear-gradient(135deg, gold, cyan, #ffaa44);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 16px;
+        }
+        .xiaoxuan-card {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.25), rgba(0, 255, 255, 0.15));
+            border: 2px solid gold;
+            border-radius: 52px;
+            padding: 28px 36px;
+            margin-bottom: 56px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .xiaoxuan-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 45px gold;
+            border-color: cyan;
+        }
+        .xiaoxuan-name {
+            font-size: 48px;
+            font-weight: 800;
+            color: #ffdd99;
+            text-shadow: 0 0 12px gold;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0 20px;
+            flex-wrap: wrap;
+        }
+        .action-btn {
+            background: rgba(255, 100, 100, 0.2);
+            border: 1px solid #ff6680;
+            border-radius: 60px;
+            padding: 12px 32px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ff88aa;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .future-section {
+            margin: 40px 32px;
+            background: rgba(0, 20, 40, 0.5);
+            border-radius: 56px;
+            padding: 40px;
+            text-align: center;
+            border: 1px dashed cyan;
+            cursor: pointer;
+        }
+        .contact-area {
+            text-align: center;
+            margin: 40px 0 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 255, 255, 0.3);
+        }
+        .qq-link {
+            background: rgba(0, 255, 255, 0.12);
+            border: 1px solid cyan;
+            border-radius: 60px;
+            padding: 12px 44px;
+            color: cyan;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .footer-meta {
+            text-align: center;
+            font-size: 13px;
+            color: #8baadd;
+            padding-bottom: 30px;
+        }
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.97);
+            backdrop-filter: blur(28px);
+            z-index: 3000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.25s;
+        }
+        .modal.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .modal-card {
+            background: #0b1424f5;
+            border-radius: 56px;
+            max-width: 800px;
+            width: 90%;
+            padding: 40px;
+            border: 2px solid cyan;
+            box-shadow: 0 0 60px rgba(0, 255, 255, 0.4);
+        }
+        .modal-close {
+            background: #ff4477;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 60px;
+            display: block;
+            margin: 28px auto 0;
+            cursor: pointer;
+        }
+
+        /* 自定义加载动画（能量球 + 动态文字） */
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000000dd;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            backdrop-filter: blur(20px);
+        }
+        .energy-canvas {
+            background: #000;
+            border-radius: 50%;
+            box-shadow: 0 0 50px cyan;
+        }
+        .loader-text {
+            color: cyan;
+            font-family: monospace;
+            font-size: 20px;
+            margin-top: 30px;
+            text-align: center;
+            letter-spacing: 2px;
+            animation: textPulse 1s infinite;
+        }
+        @keyframes textPulse {
+            0% { opacity: 0.6; text-shadow: 0 0 0 cyan; }
+            100% { opacity: 1; text-shadow: 0 0 10px cyan; }
+        }
+
+        /* 绝活哥详情加载时的魔方动画 */
+        .cube-loader {
+            width: 80px;
+            height: 80px;
+            margin: 20px auto;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: spinCube 1s infinite cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .cube-loader div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 255, 255, 0.2);
+            border: 2px solid cyan;
+            border-radius: 8px;
+            box-shadow: 0 0 15px cyan;
+            animation: glowBreath 1s infinite alternate;
+        }
+        @keyframes glowBreath {
+            from { box-shadow: 0 0 5px cyan; border-color: rgba(0,255,255,0.5); }
+            to { box-shadow: 0 0 25px cyan; border-color: cyan; }
+        }
+        .front  { transform: translateZ(40px); }
+        .back   { transform: translateZ(-40px) rotateY(180deg); }
+        .right  { transform: rotateY(90deg) translateZ(40px); }
+        .left   { transform: rotateY(-90deg) translateZ(40px); }
+        .top    { transform: rotateX(90deg) translateZ(40px); }
+        .bottom { transform: rotateX(-90deg) translateZ(40px); }
+        @keyframes spinCube {
+            0% { transform: rotateX(0deg) rotateY(0deg); }
+            100% { transform: rotateX(360deg) rotateY(360deg); }
+        }
+
+        /* 恐怖模式特效 */
+        .blood-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 20000;
+            background: radial-gradient(circle, rgba(255,0,0,0.4), transparent);
+            animation: bloodPulse 0.15s infinite;
+        }
+        @keyframes bloodPulse {
+            0% { opacity: 0.3; background-size: 100% 100%; }
+            100% { opacity: 0.8; background-size: 200% 200%; }
+        }
+        .ghost-face {
+            position: fixed;
+            font-size: 70px;
+            pointer-events: none;
+            z-index: 20001;
+            animation: floatGhost 1.5s ease-out forwards;
+            filter: drop-shadow(0 0 15px red);
+        }
+        @keyframes floatGhost {
+            0% { transform: scale(0.5) rotate(0deg); opacity: 0; }
+            20% { opacity: 1; transform: scale(1.2) rotate(10deg); }
+            100% { transform: translateY(-100px) scale(0.8) rotate(20deg); opacity: 0; }
+        }
+        .shake-screen {
+            animation: shakeHard 0.08s infinite;
+        }
+        @keyframes shakeHard {
+            0% { transform: translate(1px, 1px); }
+            25% { transform: translate(-2px, -1px); }
+            50% { transform: translate(2px, 0); }
+            75% { transform: translate(-1px, 2px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        /* 灵动岛 */
+        .dynamic-island-center {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2000;
+            width: auto;
+            min-width: 320px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(30px);
+            border-radius: 50px;
+            border: 1px solid rgba(0, 255, 255, 0.5);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 16px;
+            gap: 12px;
+        }
+        .island-section { display: flex; align-items: center; gap: 12px; }
+        .island-icon { width: 32px; height: 32px; background: cyan; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; color: #000; }
+        .music-controls { display: flex; gap: 8px; }
+        .ctrl-icon { background: none; border: none; color: cyan; font-size: 18px; cursor: pointer; width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
+        .ai-chat-preview { display: flex; align-items: center; gap: 8px; background: rgba(0,255,255,0.1); border-radius: 40px; padding: 4px 12px; cursor: pointer; }
+        .ai-chat-window {
+            position: fixed;
+            top: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 380px;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(30px);
+            border-radius: 28px;
+            border: 1px solid cyan;
+            z-index: 2001;
+            display: none;
+            flex-direction: column;
+        }
+        .ai-header { padding: 12px 16px; background: rgba(0,200,255,0.2); display: flex; justify-content: space-between; color: cyan; }
+        .ai-messages { height: 320px; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+        .ai-msg { background: rgba(0,255,255,0.1); border-radius: 18px; padding: 8px 12px; font-size: 14px; color: #eef5ff; }
+        .ai-msg.user { background: rgba(100,100,255,0.25); align-self: flex-end; }
+        .ai-input-area { display: flex; border-top: 1px solid rgba(255,255,255,0.2); padding: 12px; }
+        .ai-input { flex: 1; background: #07121e; border: 1px solid cyan; border-radius: 40px; padding: 8px 12px; color: cyan; outline: none; }
+        .ai-send { background: cyan; border: none; border-radius: 40px; padding: 0 16px; margin-left: 8px; font-weight: bold; cursor: pointer; }
+        .global-toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); backdrop-filter: blur(20px); border-radius: 60px; padding: 10px 24px; color: cyan; font-size: 14px; border: 1px solid cyan; z-index: 10001; display: none; white-space: nowrap; }
+
+        /* 欢迎屏幕（打字机） */
+        .welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.97);
+            backdrop-filter: blur(24px);
+            z-index: 15000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: #0cf;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            padding: 40px;
+            cursor: pointer;
+        }
+        .welcome-content {
+            max-width: 800px;
+            background: rgba(0,0,0,0.7);
+            border: 1px solid cyan;
+            border-radius: 32px;
+            padding: 40px;
+            box-shadow: 0 0 50px rgba(0,255,255,0.3);
+            animation: floatText 2s ease-in-out infinite;
+        }
+        @keyframes floatText {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+        .typewriter {
+            font-size: 18px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            text-align: left;
+        }
+        .press-key {
+            margin-top: 40px;
+            font-size: 20px;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0% { opacity: 0.4; }
+            50% { opacity: 1; }
+            100% { opacity: 0.4; }
+        }
+
+        /* 信件专用样式（黑色背景白色字体 + 耀光结束语） */
+        .letter-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            backdrop-filter: blur(20px);
+            z-index: 50000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: #ffffff;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+        }
+        .letter-content {
+            max-width: 800px;
+            width: 85%;
+            background: #000000;
+            border: 1px solid cyan;
+            border-radius: 48px;
+            padding: 50px 40px;
+            box-shadow: 0 0 60px rgba(0,255,255,0.3);
+            font-size: 20px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            text-align: left;
+            transition: all 0.3s;
+            color: #ffffff;
+        }
+        .letter-loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(0,255,255,0.2);
+            border-top: 4px solid cyan;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .bye-words {
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            text-shadow: 0 0 5px gold, 0 0 15px orange, 0 0 30px #ffaa44;
+            transition: all 0.8s ease-out;
+            opacity: 0;
+            transform: scale(0.5);
+        }
+        .bye-words.show {
+            opacity: 1;
+            transform: scale(1);
+            font-size: 90px;
+            text-shadow: 0 0 20px gold, 0 0 40px orange, 0 0 60px #ff6600;
+        }
+    </style>
+</head>
+<body>
+<!-- ================= 原有登录面板（不变） ================= -->
+<div id="loginBox" class="quantum-panel">
+    <div class="quantum-icon">⚛️</div>
+    <div class="quantum-title">巅峰 · 量子权限</div>
+    <div class="quantum-sub">// 1200-1800 巅峰教学 //</div>
+    <div class="security-notice"><strong>⚠️ 知识产权与安全协议</strong><br>本教学系统受著作权法保护。禁止逆向工程、篡改源码或恶意攻击。</div>
+    <div class="code-input-area"><input type="password" id="keyInput" class="neon-input" placeholder="巅峰密钥"><button id="unlockBtn" class="glow-button">⟡ 验证授权 ⟡</button></div>
+    <div id="errMsg" class="error-feedback"></div>
+</div>
+
+<!-- 全屏加载层 -->
+<div id="loaderCanvasContainer" class="loader-container" style="display: none;">
+    <canvas id="energyCanvas" width="400" height="400" class="energy-canvas"></canvas>
+    <div class="loader-text" id="loaderDynamicText">⚡ 初始化量子协议...</div>
+</div>
+
+<!-- 教学主界面 -->
+<div id="teachingPanel" class="teaching-temple">
+    <div class="master-card">
+        <div class="header-area"><div class="coach-info"><div class="coach-avatar" id="eggavatar"><img src="avatar.jpg" alt="小轩ovo" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'45\' fill=\'%230cf\' /%3E%3Ctext x=\'50\' y=\'67\' fill=\'%23000\' font-size=\'50\' dy=\'.3em\'%3E🎙️%3C/text%3E%3C/svg%3E';"></div><div class="coach-name">小轩ovo</div></div><div style="color:cyan;">⚡ 巅峰运营 · 破境成神 ⚡</div></div>
+        <div class="phase-section"><div class="phase-card"><div class="phase-title">⚔️ 1200-1350 · 秩序重塑</div><ul class="phase-list"><li>核心理念：「不崩即胜」，兵线优先级＞团战</li><li>经济公式：1击杀 ≈ 2组野怪，刷钱第一</li><li>龙团纪律：2分钟暴君 / 10分钟双龙，清中线再开</li><li>英雄推荐：王昭君、张飞、狂铁等容错率高的英雄</li></ul></div><div class="phase-card"><div class="phase-title">🔥 1350-1600 · 节奏闭环</div><ul class="phase-list"><li>转线核心：中边联动，推完边路立刻转中压塔</li><li>闭环节奏：入侵野区 → 推塔 → 控龙，经济差滚雪球</li><li>双龙会：10分钟先拿暴君再拿主宰</li><li>BAN位：朵莉亚、敖隐、大司命</li></ul></div><div class="phase-card"><div class="phase-title">💎 1600-1800 · 破壁飞升</div><ul class="phase-list"><li>视野博弈：辅助提前30秒卡河道，打野藏视野开龙</li><li>逆风法则：带深线拖延，放弃暴君换防御塔，避团守高地</li><li>顺风压制：控敌方野区，经济领先3k时胜率84%</li><li>心态管理：连败两局立即停排15分钟</li></ul></div></div>
+        <div class="basic-hero-section"><div class="section-label">📖 核心英雄 · 连招技巧</div><div id="heroAccordion"></div></div>
+        <div id="futureSection" class="future-section"><div class="future-title">✨ 2100-2500 巅峰神域 ✨</div><div style="color:#aaa;">深度教学·百星运营·敬请期待</div></div>
+        
+        <!-- 绝活哥殿堂 -->
+        <div id="hallOfFame" class="hall-of-fame">
+            <div class="hall-title">🏆 绝活哥 · 全明星殿堂 🏆</div>
+            <div class="hall-sub">汇聚全网顶尖天花板 · 致敬信仰</div>
+            <div id="xiaoxuanCard" class="xiaoxuan-card"><div class="xiaoxuan-name">🎙️ 小轩ovo</div><div class="xiaoxuan-title">巅峰架构师 · 全能战神</div><div style="color:#ddd;">殿堂级导师·点击查看传奇履历</div></div>
+            <div id="specialistGrid" class="specialist-hero-grid"></div>
+            <div class="action-buttons"><div id="applyBtn" class="action-btn">📝 申请补充绝活哥</div><div id="complaintBtn" class="action-btn">⚠️ 投诉建议</div><div id="bugReportBtn" class="action-btn">🐞 Bug上报</div></div>
+        </div>
+        <div class="contact-area"><div id="qqConnect" class="qq-link">📱 联系小轩 · 添加QQ</div></div>
+        <div class="footer-meta">※ 基于巅峰赛1200-1800万场数据提炼 · 绝活哥信息源自直播平台/社区，持续更新</div>
+    </div>
+</div>
+
+<!-- 新增“作者给你们写的一封信”按钮 -->
+<div style="text-align: center; margin-top: 30px;">
+    <button id="letterButton" class="action-btn" style="background: rgba(0,200,255,0.3); border-color: cyan;">📜 作者给你们写的一封信</button>
+</div>
+
+<!-- 灵动岛 & AI 窗口 -->
+<div id="dynamicIsland" class="dynamic-island-center">
+    <div class="island-section"><div class="island-icon">🎵</div><div class="music-controls"><button class="ctrl-icon" id="miniPlayPause">▶</button></div></div>
+    <div class="ai-chat-preview" id="openAiChat"><span>🤖 AI 助教</span><span style="font-size:12px;">💬 点击对话</span></div>
+</div>
+<div id="aiChatWindow" class="ai-chat-window">
+    <div class="ai-header"><span>🤖 小轩 · AI 助手</span><button id="closeAiChat" style="background:none; border:none; color:cyan;">✕</button></div>
+    <div id="aiMessages" class="ai-messages"></div>
+    <div class="ai-input-area"><input type="text" id="aiInput" class="ai-input" placeholder="输入你的回答..."><button id="aiSend" class="ai-send">发送</button></div>
+</div>
+<div id="globalToast" class="global-toast">⚡ 加载中...</div>
+
+<script>
+    // ========== 全局点击音效（随机多音调） ==========
+    let audioCtx = null;
+    function playRandomBeep() {
+        try {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            const frequencies = [880, 660, 1046, 523, 1318];
+            const freq = frequencies[Math.floor(Math.random() * frequencies.length)];
+            const now = audioCtx.currentTime;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.frequency.value = freq;
+            gain.gain.value = 0.15;
+            osc.start();
+            gain.gain.exponentialRampToValueAtTime(0.00001, now + 0.12);
+            osc.stop(now + 0.12);
+        } catch(e) { console.warn("Web Audio 不可用"); }
+    }
+
+    function showToast(msg) { let t = document.getElementById('globalToast'); t.innerText = msg; t.style.display = 'block'; setTimeout(() => t.style.display = 'none', 800); }
+
+    // ========== 欢迎屏幕（打字机 + 点击任意位置触发加载） ==========
+    function showWelcomeScreen(callback) {
+        const introText = `╔══════════════════════════════════════════════════════════════════════════════════╗
+║                          ◈ 巅峰破晓 · 量子教学系统 ◈                          ║
+╠══════════════════════════════════════════════════════════════════════════════════╣
+║  ✅ 项目定位：王者荣耀 1200-1800 巅峰赛突破教学                                 ║
+║  ✅ 技术栈：                                                                   ║
+║      • HTML5 / CSS3（动态网格、玻璃拟态、全响应式）                            ║
+║      • JavaScript (ES6+) 全交互逻辑 + 异步流程控制                             ║
+║      • Canvas 2D 能量充能动画 + 3D 魔方加载特效                                ║
+║      • Web Audio API（多音轨控制 + 随机点击反馈音效）                          ║
+║      • 面向对象编程 + 事件驱动设计                                             ║
+║  ✅ 开发者：小轩                                                           ║
+║      • 高级工程师 · 巅峰赛定榜全国前10 · 独创「意识破晓」教学体系          ║
+║      • 累计培养学员 3000+，600+ 突破 1800 分                                   ║
+║      • 教学视频全网播放量超 5000 万                                            ║
+║  ✅ 本系统代码量超过 5000 行，所有教学数据均经过实战验证                        ║
+║  ✅ 严禁任何形式的篡改、倒卖或恶意攻击，违者将追究法律责任                      ║
+╚══════════════════════════════════════════════════════════════════════════════════╝
+
+⚡ 点击任意位置，开始加载巅峰系统...`;
+        const welcomeDiv = document.createElement('div');
+        welcomeDiv.className = 'welcome-screen';
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'welcome-content';
+        const typewriterDiv = document.createElement('div');
+        typewriterDiv.className = 'typewriter';
+        contentDiv.appendChild(typewriterDiv);
+        welcomeDiv.appendChild(contentDiv);
+        document.body.appendChild(welcomeDiv);
+        let i = 0;
+        function typeNext() {
+            if (i < introText.length) {
+                typewriterDiv.innerHTML += introText[i];
+                i++;
+                setTimeout(typeNext, 18);
+            } else {
+                const pressDiv = document.createElement('div');
+                pressDiv.className = 'press-key';
+                pressDiv.innerText = '⚡ 点击任意位置继续 ⚡';
+                contentDiv.appendChild(pressDiv);
+                const removeWelcome = () => { welcomeDiv.remove(); if (callback) callback(); };
+                welcomeDiv.addEventListener('click', removeWelcome);
+                window.addEventListener('keydown', removeWelcome, { once: true });
+            }
+        }
+        typeNext();
+    }
+
+    // ========== 炫酷加载流程 ==========
+    function startAdvancedLoading(callback) {
+        const container = document.getElementById('loaderCanvasContainer');
+        const canvas = document.getElementById('energyCanvas');
+        const ctx = canvas.getContext('2d');
+        container.style.display = 'flex';
+        const textEl = document.getElementById('loaderDynamicText');
+        const texts = [
+            "⚡ 正在获取前端数据...",
+            "🔗 正在连接后台服务器...",
+            "🛡️ 验证量子协议...",
+            "📊 解析巅峰教学库...",
+            "🧠 加载绝活哥数据库...",
+            "🎮 初始化音频引擎...",
+            "✨ 充能完成，即将进入巅峰殿堂！"
+        ];
+        let step = 0;
+        const textInterval = setInterval(() => {
+            if (step < texts.length) {
+                textEl.innerText = texts[step];
+                step++;
+            } else {
+                clearInterval(textInterval);
+            }
+        }, 800);
+        let progress = 0;
+        let animationId;
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const centerX = canvas.width/2, centerY = canvas.height/2;
+            const radius = 50 + progress * 1.5;
+            ctx.shadowBlur = 20; ctx.shadowColor = '#0cf';
+            for (let i = 0; i < 3; i++) {
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, radius + i*8, 0, Math.PI*2);
+                ctx.strokeStyle = `rgba(0, 255, 255, ${0.3 - i*0.1})`;
+                ctx.lineWidth = 3;
+                ctx.stroke();
+            }
+            for (let i = 0; i < 20; i++) {
+                let angle = Date.now() * 0.005 + i;
+                let r = radius - 10 + Math.sin(angle) * 10;
+                let x = centerX + Math.cos(angle) * r;
+                let y = centerY + Math.sin(angle) * r;
+                ctx.beginPath();
+                ctx.arc(x, y, 4, 0, Math.PI*2);
+                ctx.fillStyle = `rgba(0, 255, 255, ${0.8 - progress/100})`;
+                ctx.fill();
+            }
+            let grad = ctx.createRadialGradient(centerX, centerY, 10, centerX, centerY, radius);
+            grad.addColorStop(0, 'cyan'); grad.addColorStop(1, 'rgba(0,100,200,0.5)');
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius * 0.6, 0, Math.PI*2);
+            ctx.fillStyle = grad;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            ctx.font = 'bold 24px monospace';
+            ctx.fillStyle = '#0cf';
+            ctx.shadowBlur = 10;
+            ctx.fillText(Math.floor(progress)+'%', centerX-35, centerY-30);
+            progress += 1.5;
+            if (progress >= 100) {
+                cancelAnimationFrame(animationId);
+                clearInterval(textInterval);
+                const welcomeAudio = new Audio('welcome.mp3');
+                welcomeAudio.play().catch(e => console.warn("未找到 welcome.mp3，跳过语音"));
+                setTimeout(() => {
+                    container.style.display = 'none';
+                    if (callback) callback();
+                }, 500);
+                return;
+            }
+            animationId = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ========== 卡密验证 ==========
+    const SECRET = "RElDR0NGSEhLQkZFREtCQUtB";
+    const loginDiv = document.getElementById('loginBox');
+    const teachDiv = document.getElementById('teachingPanel');
+    const unlockBtn = document.getElementById('unlockBtn');
+    const keyInput = document.getElementById('keyInput');
+    const errSpan = document.getElementById('errMsg');
+
+    async function verify() {
+        if (keyInput.value.trim() === SECRET) {
+            errSpan.innerText = '';
+            showWelcomeScreen(() => {
+                startAdvancedLoading(() => {
+                    loginDiv.style.display = 'none';
+                    teachDiv.classList.add('visible');
+                    buildBasicHeroes();
+                    buildSpecialistGrid();
+                    if (audio && audio.paused) audio.play().catch(()=>{});
+                });
+            });
+        } else {
+            errSpan.innerText = '❌ 密钥错误，获取卡密请联系小轩 ❌';
+        }
+    }
+    unlockBtn.onclick = verify;
+    keyInput.onkeypress = (e) => { if (e.key === 'Enter') verify(); };
+
+    // ========== 基础英雄教学 ==========
+    const basicHeroes = {
+        jing: { name: "镜", role: "jungle", tips: "中轴飞雷神: 大招换位接平A减CD", combo: "3A→323A→31A→323A→313A" },
+        luna: { name: "露娜", role: "jungle", tips: "月光标记刷新大招", combo: "13A2A3A3 ; A1A3A3A2A3A3" },
+        machao: { name: "马超", role: "top", tips: "存枪移速拉扯, 三角杀", combo: "脚底存枪→2技能丢身后→大收A→1技能→大收A" },
+        yixing: { name: "弈星", role: "mid", tips: "221A连招封地形", combo: "2拉人+1棋+2二段+强化A" },
+        huofu: { name: "不知火舞", role: "mid", tips: "二技能减魔抗,一闪开团", combo: "2-1-3-2-被动翻滚" },
+        peiqinhu: { name: "裴擒虎", role: "jungle", tips: "二级反野,258节奏", combo: "人2A1A切虎2A1A" },
+        sunshangxiang: { name: "孙尚香", role: "adc", tips: "翻滚强化普攻,存枪爆发", combo: "1A2A3A" },
+        gongben: { name: "公孙离", role: "adc", tips: "伞位灵活, 二技能挡飞行物", combo: "1突进+平A+2挡+回伞" },
+        zhangfei: { name: "张飞", role: "support", tips: "二技能护盾,大招反手控场", combo: "2护盾+大招晕人" }
+    };
+    const roleMap = [
+        { key: "jungle", label: "⚡ 打野" }, { key: "top", label: "🗡️ 对抗路" }, { key: "mid", label: "🔮 中路" },
+        { key: "adc", label: "🏹 发育路" }, { key: "support", label: "❤️ 游走" }
+    ];
+    function buildBasicHeroes() {
+        const container = document.getElementById('heroAccordion');
+        if (!container) return;
+        container.innerHTML = '';
+        for (let r of roleMap) {
+            const arr = Object.values(basicHeroes).filter(h => h.role === r.key);
+            if (arr.length === 0) continue;
+            const group = document.createElement('div'); group.className = 'role-group';
+            group.innerHTML = `<div class="role-header"><span>${r.label}</span><span class="toggle-arrow">▼</span></div><div class="role-content"><div class="heroes-grid" id="grid-${r.key}"></div></div>`;
+            container.appendChild(group);
+            const grid = document.getElementById(`grid-${r.key}`);
+            arr.forEach(hero => {
+                const card = document.createElement('div'); card.className = 'hero-card';
+                card.innerHTML = `<div class="hero-name">${hero.name}</div><div style="color:#bbddff;">点击查看连招</div>`;
+                card.onclick = () => showBasicModal(hero.name, hero.tips, hero.combo);
+                grid.appendChild(card);
+            });
+        }
+        document.querySelectorAll('.role-header').forEach(h => {
+            const content = h.nextElementSibling;
+            const arrow = h.querySelector('.toggle-arrow');
+            h.onclick = (e) => { e.stopPropagation(); content.classList.toggle('open'); arrow.innerHTML = content.classList.contains('open') ? '▲' : '▼'; };
+            if (h.innerText.includes('打野')) { content.classList.add('open'); arrow.innerHTML = '▲'; }
+        });
+    }
+    function showBasicModal(name, tips, combo) {
+        const modal = document.getElementById('globalModal');
+        document.getElementById('modalName').innerText = name;
+        document.getElementById('modalInfo').innerHTML = `<p><strong>🎯 核心思路</strong><br>${tips}</p><p><strong>✧ 连招</strong><br>${combo}</p>`;
+        modal.classList.add('active');
+    }
+
+    // ========== 绝活哥数据库 ==========
+    const specialistMap = {
+        "镜": ["微凉", "夏童", "东方镜宗师"],
+        "露娜": ["北慕", "孤影"],
+        "马超": ["予神", "夜斗"],
+        "元歌": ["桑杰", "听安", "枷锁"],
+        "司空震": ["琴酒", "真昼"],
+        "韩信": ["梦泪", "寂然"],
+        "李白": ["小锦儿", "剑仙"],
+        "花木兰": ["杰瑞", "薄情"],
+        "关羽": ["明眸", "慢慢"],
+        "孙尚香": ["口袋"],
+        "貂蝉": ["张老三"],
+        "张飞": ["吴日天"],
+        "大乔": ["南京Hero.久酷"],
+        "不知火舞": ["宗师", "鹿乃"],
+        "公孙离": ["一诺", "梦岚"],
+        "裴擒虎": ["可杰", "李知恩"]
+    };
+    const specialistDetails = {
+        "微凉": { real: "—", platform: "虎牙/抖音", glory: "国服第一镜，巅峰榜首", feat: "飞雷神开创者" },
+        "夏童": { real: "—", platform: "快手", glory: "国服镜", feat: "边缘飞雷神" },
+        "东方镜宗师": { real: "东方翔", platform: "快手/虎牙", glory: "镜之宗师", feat: "镜影杀阵" },
+        "北慕": { real: "张天宇", platform: "虎牙", glory: "S18巅峰第一", feat: "月下无限连" },
+        "孤影": { real: "陈才浩", platform: "虎牙", glory: "国服露娜", feat: "全能王" },
+        "予神": { real: "—", platform: "虎牙", glory: "国服第一马超", feat: "三角杀代言人" },
+        "夜斗": { real: "—", platform: "虎牙", glory: "三角杀之父", feat: "最早开创" },
+        "桑杰": { real: "王汉桑", platform: "快手", glory: "花果山队长", feat: "抱歉流元歌" },
+        "听安": { real: "何仁杰", platform: "快手", glory: "花果山元歌导师", feat: "solo赛战神" },
+        "枷锁": { real: "—", platform: "斗鱼", glory: "最早国一元歌", feat: "至圣元歌" },
+        "琴酒": { real: "—", platform: "快手", glory: "水蛭流开创者", feat: "分均经济1000+" },
+        "真昼": { real: "—", platform: "虎牙", glory: "国一司空震", feat: "雷霆之力x9" },
+        "梦泪": { real: "肖闽辉", platform: "虎牙/AG", glory: "KPL传奇偷家", feat: "偷家开创者" },
+        "寂然": { real: "林诚", platform: "虎牙", glory: "七国服韩信", feat: "百星韩信" },
+        "小锦儿": { real: "—", platform: "虎牙", glory: "国服李白", feat: "青莲剑仙" },
+        "剑仙": { real: "—", platform: "虎牙", glory: "老牌李白绝活哥", feat: "百星李白" },
+        "杰瑞": { real: "—", platform: "虎牙", glory: "国服花木兰", feat: "沉默猎手" },
+        "薄情": { real: "—", platform: "快手", glory: "国服花木兰", feat: "重剑无锋" },
+        "明眸": { real: "—", platform: "虎牙", glory: "国服关羽", feat: "一刀流" },
+        "慢慢": { real: "—", platform: "虎牙", glory: "巅峰第一关羽", feat: "稳健压制" },
+        "口袋": { real: "—", platform: "虎牙", glory: "国服孙尚香", feat: "极限翻滚" },
+        "张老三": { real: "—", platform: "虎牙", glory: "国服第一貂蝉", feat: "蝉神" },
+        "吴日天": { real: "—", platform: "虎牙", glory: "国服辅助", feat: "开团机器" },
+        "南京Hero.久酷": { real: "—", platform: "KPL", glory: "大乔体系核心", feat: "电梯流大师" },
+        "宗师": { real: "李宗师", platform: "虎牙/快手", glory: "国服第一不知火舞", feat: "26000分火舞" },
+        "鹿乃": { real: "—", platform: "斗鱼", glory: "国服火舞", feat: "法刺天花板" },
+        "一诺": { real: "徐必成", platform: "AG超玩会", glory: "KPL顶级射手", feat: "五杀成名" },
+        "梦岚": { real: "—", platform: "虎牙", glory: "国服公孙离", feat: "巅峰第一" },
+        "可杰": { real: "—", platform: "虎牙", glory: "国服裴擒虎", feat: "野王代名词" },
+        "李知恩": { real: "—", platform: "虎牙", glory: "裴擒虎天花板", feat: "巅峰常客" }
+    };
+
+    function buildSpecialistGrid() {
+        const gridContainer = document.getElementById('specialistGrid');
+        if (!gridContainer) return;
+        gridContainer.style.display = 'flex';
+        gridContainer.style.flexWrap = 'wrap';
+        gridContainer.style.gap = '24px';
+        gridContainer.style.justifyContent = 'center';
+        for (let [hero, names] of Object.entries(specialistMap)) {
+            const heroCard = document.createElement('div');
+            heroCard.style.background = '#0c1f2ee6';
+            heroCard.style.borderRadius = '48px';
+            heroCard.style.width = 'calc(33.33% - 24px)';
+            heroCard.style.minWidth = '280px';
+            heroCard.style.padding = '20px';
+            heroCard.style.border = '1px solid rgba(0,255,255,0.3)';
+            heroCard.style.transition = 'all 0.3s';
+            heroCard.innerHTML = `<div style="font-size:28px; font-weight:800; color:#ffdd99; margin-bottom:16px; border-bottom:1px solid cyan; display:inline-block;">${hero}</div><div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:16px;" id="hero-${hero}"></div>`;
+            gridContainer.appendChild(heroCard);
+            const listDiv = heroCard.querySelector(`#hero-${hero}`);
+            names.forEach(name => {
+                const nameSpan = document.createElement('span');
+                nameSpan.innerText = name;
+                nameSpan.style.background = '#0a1824';
+                nameSpan.style.padding = '6px 16px';
+                nameSpan.style.borderRadius = '40px';
+                nameSpan.style.fontSize = '16px';
+                nameSpan.style.cursor = 'pointer';
+                nameSpan.style.border = '1px solid cyan';
+                nameSpan.onmouseover = () => nameSpan.style.background = '#1a3a5a';
+                nameSpan.onmouseout = () => nameSpan.style.background = '#0a1824';
+                nameSpan.onclick = (e) => {
+                    e.stopPropagation();
+                    const detail = specialistDetails[name];
+                    if (!detail) return;
+                    const modal = document.getElementById('globalModal');
+                    document.getElementById('modalName').innerText = "🔮 加载档案";
+                    document.getElementById('modalInfo').innerHTML = '<div style="text-align:center;"><div class="cube-loader" style="width:60px;height:60px;margin:20px auto;"><div class="front"></div><div class="back"></div><div class="right"></div><div class="left"></div><div class="top"></div><div class="bottom"></div></div><p style="color:cyan;">解密绝活数据...</p></div>';
+                    modal.classList.add('active');
+                    setTimeout(() => {
+                        let info = `<p><strong>✨ 英雄绝活：</strong> ${hero}</p>`;
+                        if (detail.real && detail.real !== '—') info += `<p><strong>🆔 真实姓名：</strong> ${detail.real}</p>`;
+                        info += `<p><strong>🏆 辉煌战绩：</strong> ${detail.glory}</p><p><strong>🎖️ 招牌荣誉：</strong> ${detail.feat}</p><p><strong>📡 活跃平台：</strong> ${detail.platform}</p>`;
+                        document.getElementById('modalName').innerText = name;
+                        document.getElementById('modalInfo').innerHTML = info;
+                    }, 1000);
+                };
+                listDiv.appendChild(nameSpan);
+            });
+        }
+    }
+
+    // ========== 邮箱反馈功能 ==========
+    function sendFeedback(subject, body) {
+        window.location.href = `mailto:3120650979@qq.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        alert("请在弹出的邮件客户端中发送，感谢您的反馈！");
+    }
+    document.getElementById('applyBtn')?.addEventListener('click', () => {
+        const name = prompt("请输入绝活哥昵称："); if (!name) return;
+        const hero = prompt("请输入绝活英雄："); if (!hero) return;
+        const platform = prompt("请输入平台：") || "未知";
+        const contact = prompt("联系方式：") || "未提供";
+        const extra = prompt("补充说明：") || "";
+        sendFeedback("【绝活哥补充申请】", `昵称：${name}\n英雄：${hero}\n平台：${platform}\n联系方式：${contact}\n补充说明：${extra}`);
+    });
+    document.getElementById('complaintBtn')?.addEventListener('click', () => {
+        const text = prompt("请输入您的投诉或建议内容："); if (!text) return;
+        sendFeedback("【投诉建议】", text);
+    });
+    document.getElementById('bugReportBtn')?.addEventListener('click', () => {
+        const text = prompt("请详细描述Bug："); if (!text) return;
+        sendFeedback("【Bug上报】", text);
+    });
+    document.getElementById('qqConnect')?.addEventListener('click', () => {
+        if (confirm("⚠️ 警告：禁止骚扰否则会被拉黑哦！确认添加小轩？")) {
+            window.open('https://qm.qq.com/q/ciVXl8MMqk', '_blank');
+        }
+    });
+    document.getElementById('futureSection')?.addEventListener('click', () => alert('2100-2500分段深度教学敬请期待！'));
+
+    // ========== 音乐播放器 ==========
+    let audio = new Audio('bgm.mp3');
+    audio.loop = false;
+    let isPlaying = false;
+    const miniPlayPause = document.getElementById('miniPlayPause');
+    miniPlayPause.onclick = () => {
+        if (isPlaying) { audio.pause(); isPlaying = false; miniPlayPause.innerHTML = '▶'; }
+        else { audio.play().catch(()=>{}); isPlaying = true; miniPlayPause.innerHTML = '⏸'; }
+    };
+
+    // ========== 自动播放背景音乐 ==========
+    // 由于浏览器策略，自动播放可能被阻止，但会尝试播放
+    audio.play().catch(e => console.warn("自动播放失败，需要用户交互", e));
+
+    // ========== AI 助手（完整保留） ==========
+    const aiWindow = document.getElementById('aiChatWindow');
+    const openAiBtn = document.getElementById('openAiChat');
+    const closeAiBtn = document.getElementById('closeAiChat');
+    openAiBtn.onclick = (e) => { e.stopPropagation(); aiWindow.style.display = 'flex'; };
+    closeAiBtn.onclick = () => { aiWindow.style.display = 'none'; };
+    const aiMessagesDiv = document.getElementById('aiMessages');
+    const aiInput = document.getElementById('aiInput');
+    const aiSend = document.getElementById('aiSend');
+    const badWords = ['不厉害','不牛逼','不行','菜','垃圾','弱','废','傻逼','废物','白痴','蠢','笨','滚','乐色','sb','煞笔','草','操','骂','死'];
+    const praiseWords = ['厉害','牛逼','大神','棒','强','无敌','秀','牛','崇拜','佩服'];
+    const insultBank = [
+        "😂 笑死我了，就你这水平也配评价小轩？菜得抠脚！💩",
+        "🤣 你连青铜都打不过吧？还来教学区丢人现眼？👎",
+        "😡 你现实中也这么没出息吗？说话跟放屁一样臭！🤮",
+        "💩 你的操作我看一眼都想吐，真是废物中的极品！👎",
+        "🔥 小轩巅峰前10，你连他的脚趾头都比不上！🤡",
+        "🎭 你这种人活着就是浪费空气，打游戏就是浪费电量！💀",
+        "⚡ 你一辈子卡在1200分，永远都上不去！真可悲！😭",
+        "😤 骂你是给你面子，你这种乐色根本不配跟我说话！🤬",
+        "💀 你的智商余额不足，请立刻充值！否则会被系统永久拉黑！",
+        "👻 建议你回炉重造，连小轩都不认识还敢混王者圈？",
+        "🤖 检测到低能儿发言，已自动屏蔽。请你自行退散！",
+        "🔪 你连游戏机制都没搞懂就来质疑小轩？脸皮比城墙还厚！",
+        "🎯 小轩随便教个学生都比你强百倍，你拿什么比？",
+        "💣 再BB我就让你的手机原地爆炸！(开玩笑的，但你的技术真的该炸)",
+        "🧠 你的大脑是不是被僵尸吃掉了？这么简单的教学都看不懂？",
+        "👎 就你这种态度，怪不得永远上不了1800！"
+    ];
+    function addAIMessage(text, isUser = false) {
+        const msgDiv = document.createElement('div'); msgDiv.className = isUser ? 'ai-msg user' : 'ai-msg'; msgDiv.innerText = text; aiMessagesDiv.appendChild(msgDiv); aiMessagesDiv.scrollTop = aiMessagesDiv.scrollHeight;
+    }
+    function containsBadWord(msg) { return badWords.some(w => msg.toLowerCase().includes(w)); }
+    function isPraise(msg) { return praiseWords.some(w => msg.toLowerCase().includes(w)); }
+    function startFlame() {
+        let count = 5 + Math.floor(Math.random() * 6);
+        let idx = 0;
+        function sendNext() {
+            if (idx >= count) return;
+            let msg = insultBank[Math.floor(Math.random() * insultBank.length)];
+            const extra = [" 😂"," 🤣"," 😡"," 💩"," 👎"," 💀"," 🤬"," 🎭"," ⚡"," 🔥"][Math.floor(Math.random()*10)];
+            if (Math.random() > 0.5) msg += extra;
+            addAIMessage(msg);
+            idx++;
+            setTimeout(sendNext, 500 + Math.random() * 400);
+        }
+        sendNext();
+    }
+    function aiRespond(userMsg) {
+        if (containsBadWord(userMsg)) { startFlame(); return; }
+        if (isPraise(userMsg)) {
+            const praiseMsgs = ["🎉 谢谢夸奖！小轩会继续努力的！你也很棒！💪","😊 你的眼光真不错！小轩的教学绝对让你突破瓶颈！✨","🔥 没错！小轩就是巅峰天花板，跟着学准没错！","🤝 感谢支持！祝你早日上王者，一起加油！"];
+            addAIMessage(praiseMsgs[Math.floor(Math.random() * praiseMsgs.length)]);
+            return;
+        }
+        addAIMessage("🤖 你觉得小轩牛不牛逼？(回答“厉害”或“不厉害”)");
+    }
+    aiSend.onclick = () => {
+        let msg = aiInput.value.trim(); if (!msg) return;
+        addAIMessage(msg, true);
+        aiInput.value = '';
+        aiRespond(msg);
+    };
+    aiInput.onkeypress = (e) => { if (e.key === 'Enter') aiSend.click(); };
+    addAIMessage("🤖 你好！我是小轩的AI助手，主人是小轩~");
+    addAIMessage("🤖 你觉得小轩牛不牛逼？");
+
+    // ========== 小轩荣誉彩蛋（牛逼：雪花祝福；不牛逼：恐怖） ==========
+    let horrorActive = false;
+    let horrorAudio = null;
+    let volumeInterval = null, ghostInterval = null, bloodDiv = null, alertInterval = null;
+    function stopHorror() {
+        if (volumeInterval) clearInterval(volumeInterval);
+        if (ghostInterval) clearInterval(ghostInterval);
+        if (alertInterval) clearInterval(alertInterval);
+        if (bloodDiv) bloodDiv.remove();
+        document.body.classList.remove('shake-screen');
+        if (horrorAudio) { horrorAudio.pause(); horrorAudio = null; }
+        horrorActive = false;
+    }
+    function startHorror() {
+        if (horrorActive) return;
+        horrorActive = true;
+        if (audio) audio.pause();
+        horrorAudio = new Audio('horror.mp3');
+        horrorAudio.loop = true;
+        horrorAudio.volume = 1.0;
+        horrorAudio.play().catch(e => console.warn("恐怖音频加载失败，请检查horror.mp3"));
+        let currentVol = 1.0;
+        volumeInterval = setInterval(() => {
+            if (horrorAudio && !horrorAudio.paused) {
+                currentVol = Math.min(2.0, currentVol + 0.1);
+                horrorAudio.volume = currentVol;
+            }
+        }, 200);
+        document.body.classList.add('shake-screen');
+        bloodDiv = document.createElement('div'); bloodDiv.className = 'blood-overlay'; document.body.appendChild(bloodDiv);
+        ghostInterval = setInterval(() => {
+            const ghost = document.createElement('div'); ghost.className = 'ghost-face';
+            ghost.innerHTML = ['👻','💀','👹','🤡','😱','💀','👻'][Math.floor(Math.random()*7)];
+            ghost.style.left = Math.random() * 100 + '%'; ghost.style.top = Math.random() * 80 + 10 + '%';
+            document.body.appendChild(ghost); setTimeout(() => ghost.remove(), 2000);
+        }, 500);
+        alertInterval = setInterval(() => { alert("⚠️ 你已触碰禁忌！系统陷入疯狂... ⚠️"); }, 400);
+        setTimeout(() => { stopHorror(); alert("🎉 你是个人才！居然坚持了10秒！🎉"); }, 10000);
+    }
+    function startLoveSnow() {
+        const symbols = ['❄️', '❤️', '❄️', '❤️', '🌸', '✨'];
+        const blessings = ["🎉 巅峰无敌","🏆 小轩牛逼","✨ 上分如喝水","💪 意识破晓","🔥 王者之路","🎯 把把MVP","🌟 百星不是梦","⚡ 运营致胜","📈 突破1800","💎 天赋拉满"];
+        let endTime = Date.now() + 5000;
+        let interval = setInterval(() => {
+            if (Date.now() > endTime) { clearInterval(interval); return; }
+            for (let i = 0; i < 5; i++) {
+                const snow = document.createElement('div'); snow.className = 'love-snow';
+                snow.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+                snow.style.left = Math.random() * 100 + '%';
+                snow.style.animationDuration = 2 + Math.random() * 2 + 's';
+                snow.style.fontSize = 20 + Math.random() * 30 + 'px';
+                document.body.appendChild(snow); setTimeout(() => snow.remove(), 3000);
+            }
+            if (Math.random() > 0.6) {
+                const blessing = document.createElement('div'); blessing.className = 'blessing-word';
+                blessing.innerText = blessings[Math.floor(Math.random() * blessings.length)];
+                blessing.style.left = Math.random() * 80 + 10 + '%';
+                blessing.style.animationDuration = 4 + Math.random() * 2 + 's';
+                blessing.style.fontSize = 24 + Math.random() * 20 + 'px';
+                document.body.appendChild(blessing); setTimeout(() => blessing.remove(), 4500);
+            }
+        }, 200);
+        setTimeout(() => { document.querySelectorAll('.love-snow, .blessing-word').forEach(el => el.remove()); }, 5200);
+    }
+    const xiaoxuanCard = document.getElementById('xiaoxuanCard');
+    xiaoxuanCard.onclick = () => {
+        const modalDiv = document.getElementById('globalModal');
+        document.getElementById('modalName').innerText = '🎙️ 小轩 · 传奇履历';
+        document.getElementById('modalInfo').innerHTML = `<p>✨ 巅峰教学体系奠基人，全网首位将“运营闭环”引入分段教学。</p><p>🏆 巅峰赛定榜全国前10，国服全能打野（镜、露娜、裴擒虎、澜）。</p><p>📚 独创「意识破晓」教学法，累计培养学员3000+，其中600+突破1800分。</p><p>🎯 教学视频全网播放量超5000万，学员评价“最实战、最内核”。</p><p>⚡ 合作机构：LGD青训营特邀顾问、KPL官方认证。</p><p>🔐 本系统所有教学数据均为独家原创，严禁盗用篡改。</p>`;
+        modalDiv.classList.add('active');
+        const closeBtn = document.getElementById('closeModalBtn');
+        const onClose = () => {
+            modalDiv.classList.remove('active');
+            const userChoice = confirm("小轩牛不牛逼？\n点击“确定”代表牛逼，点击“取消”代表不牛逼。");
+            if (userChoice === true) startLoveSnow();
+            else startHorror();
+            closeBtn.removeEventListener('click', onClose);
+            modalDiv.removeEventListener('click', onBg);
+        };
+        const onBg = (e) => { if (e.target === modalDiv) onClose(); };
+        closeBtn.addEventListener('click', onClose);
+        modalDiv.addEventListener('click', onBg);
+    };
+
+    // ========== “作者给你们写的一封信”功能 ==========
+    let letterAudio = null;
+    let letterOverlay = null;
+    function showLetter() {
+        if (audio && !audio.paused) audio.pause();
+        if (horrorAudio && !horrorAudio.paused) horrorAudio.pause();
+        const welcomeAudioEl = document.querySelector('audio[src="welcome.mp3"]');
+        if (welcomeAudioEl && !welcomeAudioEl.paused) welcomeAudioEl.pause();
+        letterOverlay = document.createElement('div');
+        letterOverlay.className = 'letter-overlay';
+        document.body.appendChild(letterOverlay);
+        const loadingDiv = document.createElement('div');
+        loadingDiv.className = 'letter-loading';
+        loadingDiv.innerHTML = '<div class="spinner"></div><div style="color:cyan;">正在打开信笺...</div>';
+        letterOverlay.appendChild(loadingDiv);
+        setTimeout(() => {
+            loadingDiv.remove();
+            letterAudio = new Audio('letter.mp3');
+            letterAudio.loop = true;
+            letterAudio.play().catch(e => console.warn("未找到 letter.mp3，将无背景音乐"));
+            const fullText = `亲爱的学员们：
+
+你们好。我是小轩。
+
+这个教学系统，是我独自在无数个深夜中，一行一行代码、一个数据一个数据搭建起来的。从最初的想法到最终成型，一共过去了217天。有时凌晨三点对着屏幕发呆，有时为了一个动画的流畅度反复调试几十遍。
+
+其实我不是什么天才，只是一个曾经也在1200分挣扎过的普通玩家。我太明白那种怎么打都上不去分、队友摆烂、自己迷茫的感觉了。所以我把我所有的理解和职业级的思路，都写进了这个系统里。
+
+你们现在看到的每一个卡片、每一个加载动画、每一处音效反馈，都藏着我写代码写到崩溃又咬牙继续的日日夜夜。我总想着，如果这个系统能帮到哪怕一个人突破瓶颈，那这一切都值了。
+
+我不太会说什么漂亮话。只是希望你们在点开“绝活哥殿堂”的时候，能感受到那些国服选手背后的坚持；在看到分段教学的时候，能少走一点我曾经走过的弯路。
+
+天下没有不散的筵席。这个项目可能还会更新，也可能就此封存。但无论怎样，谢谢你们愿意打开它。
+
+愿你心有山海，静待花开。愿你在王者峡谷里，也能找到属于自己的光。
+
+—— 小轩，2026年春`;
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'letter-content';
+            letterOverlay.appendChild(contentDiv);
+            let displayed = '';
+            let index = 0;
+            function typeLetter() {
+                if (index < fullText.length) {
+                    displayed += fullText[index];
+                    contentDiv.innerHTML = displayed.replace(/\n/g, '<br>');
+                    index++;
+                    setTimeout(typeLetter, 60);
+                } else {
+                    setTimeout(() => {
+                        contentDiv.style.transition = 'opacity 1.5s, transform 2.5s';
+                        contentDiv.style.opacity = '0';
+                        contentDiv.style.transform = 'scale(0.9)';
+                        setTimeout(() => {
+                            contentDiv.remove();
+                            const byeDiv = document.createElement('div');
+                            byeDiv.className = 'bye-words';
+                            byeDiv.innerText = '傻 福 小 洁🥰';
+                            letterOverlay.appendChild(byeDiv);
+                            setTimeout(() => byeDiv.classList.add('show'), 50);
+                            setTimeout(() => {
+                                if (letterAudio) { letterAudio.pause(); letterAudio = null; }
+                                letterOverlay.remove();
+                            }, 2500);
+                        }, 1200);
+                    }, 10000);
+                }
+            }
+            typeLetter();
+        }, 1500);
+    }
+    document.getElementById('letterButton').addEventListener('click', () => {
+        playRandomBeep();
+        showLetter();
+    });
+
+    // ========== 全局点击音效绑定 ==========
+    function bindClickSound() {
+        document.body.addEventListener('click', (e) => {
+            let target = e.target.closest('.hero-card, .specialist-hero-card span, .action-btn, .qq-link, .future-section, .role-header, .phase-card, .glow-button, .ctrl-icon, .ai-chat-preview, .ai-send, .close-ai-chat, .close-modal-button, .xiaoxuan-card, .filter-btn, .legend-card, .apply-btn, .complaint-btn, .bug-report-btn, .toggle-arrow, #letterButton');
+            if (target && !target.closest('.modal')) playRandomBeep();
+        });
+    }
+    bindClickSound();
+    document.getElementById('aiSend')?.addEventListener('click', () => playRandomBeep());
+    document.getElementById('closeAiChat')?.addEventListener('click', () => playRandomBeep());
+
+    // 全局加载特效
+    document.body.addEventListener('click', (e) => {
+        let target = e.target.closest('.hero-card, .specialist-hero-card span, .action-btn, .qq-link, .future-section, .role-header, .phase-card, .glow-button');
+        if (target && !target.closest('.modal')) showToast('🔮 加载数据中...');
+    });
+    let egg=0; document.getElementById('eggavatar')?.addEventListener('click',()=>{ egg++; if(egg===5){ alert('🎉 感谢支持小轩｜一起突破巅峰'); egg=0; } });
+
+    // 通用模态框
+    const globalModalDiv = document.createElement('div'); globalModalDiv.id = 'globalModal'; globalModalDiv.className = 'modal'; globalModalDiv.innerHTML = '<div class="modal-card"><div class="modal-name" id="modalName"></div><div id="modalInfo" class="modal-info"></div><button class="modal-close" id="closeModalBtn">关闭</button></div>';
+    document.body.appendChild(globalModalDiv);
+    document.getElementById('closeModalBtn').onclick = () => document.getElementById('globalModal').classList.remove('active');
+    document.getElementById('globalModal').onclick = (e) => { if (e.target === document.getElementById('globalModal')) document.getElementById('globalModal').classList.remove('active'); };
+</script>
+</body>
+</html>
